@@ -62,7 +62,7 @@ export default function HomePage() {
             <h2 className="section-title">Everything you need</h2>
           </div>
 
-          <div className="row g-4">
+          <div className="row g-4 justify-content-center">
             <FeatureCard
               icon="bi-search"
               title="Search books"

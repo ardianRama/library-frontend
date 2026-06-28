@@ -13,7 +13,6 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          {/* Fler routes läggs till här allt eftersom */}
         </Routes>
       </BrowserRouter>
     </AuthProvider>
