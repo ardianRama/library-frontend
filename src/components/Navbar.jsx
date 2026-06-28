@@ -75,14 +75,9 @@ export default function Navbar() {
                 </button>
               </>
             ) : (
-              <>
-                <Link to="/register" className="btn lib-btn-ghost">
-                  Log in
+                <Link to="/login" className="btn lib-btn-ghost">
+                  <i className="bi bi-lock me-1"></i>Log in
                 </Link>
-                <Link to="/login" className="btn lib-btn-gold">
-                  <i className="bi bi-lock me-1"></i>Create account
-                </Link>
-              </>
             )}
           </div>
         </div>

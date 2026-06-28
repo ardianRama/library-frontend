@@ -13,7 +13,6 @@ export default function HomePage() {
         <div className="container">
           <div className="row align-items-center min-vh-75">
             <div className="col-lg-7 hero-content">
-              <p className="hero-eyebrow">Digital library system</p>
               <h1 className="hero-title">
                 Find your next<br />
                 <span className="hero-title-accent">favourite book</span>
@@ -120,7 +119,7 @@ export default function HomePage() {
           <p className="footer-brand">
             <i className="bi bi-book-half me-2"></i>The Library
           </p>
-          <p className="footer-copy">© {new Date().getFullYear()} The Library · Built by Ardian Rama</p>
+          <p className="footer-copy">© {new Date().getFullYear()} Built by Ardian Rama</p>
         </div>
       </footer>
     </div>
