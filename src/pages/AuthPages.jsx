@@ -7,13 +7,13 @@ export function LoginPage() {
         <div className="auth-card">
           <div className="auth-header">
             <i className="bi bi-lock auth-icon"></i>
-            <h2 className="auth-title">Logga in</h2>
-            <p className="auth-subtitle">Välkommen tillbaka!</p>
+            <h2 className="auth-title">Log in</h2>
+            <p className="auth-subtitle">Welcome back!</p>
           </div>
           <div className="auth-body">
             <p className="text-muted text-center">
               <i className="bi bi-tools me-1"></i>
-              Inloggningsformulär byggs här i nästa steg.
+              Login form coming in the next step.
             </p>
           </div>
         </div>
@@ -29,13 +29,13 @@ export function RegisterPage() {
         <div className="auth-card">
           <div className="auth-header">
             <i className="bi bi-person-plus auth-icon"></i>
-            <h2 className="auth-title">Skapa konto</h2>
-            <p className="auth-subtitle">Kom igång på ett par sekunder</p>
+            <h2 className="auth-title">Create account</h2>
+            <p className="auth-subtitle">Get started in seconds</p>
           </div>
           <div className="auth-body">
             <p className="text-muted text-center">
               <i className="bi bi-tools me-1"></i>
-              Registreringsformulär byggs här i nästa steg.
+              Registration form coming in the next step.
             </p>
           </div>
         </div>

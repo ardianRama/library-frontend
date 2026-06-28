@@ -13,35 +13,29 @@ export default function HomePage() {
         <div className="container">
           <div className="row align-items-center min-vh-75">
             <div className="col-lg-7 hero-content">
-              <p className="hero-eyebrow">Digitalt bibliotekssystem</p>
+              <p className="hero-eyebrow">Digital library system</p>
               <h1 className="hero-title">
-                Hitta din nästa<br />
-                <span className="hero-title-accent">favoritbok</span>
+                Find your next<br />
+                <span className="hero-title-accent">favourite book</span>
               </h1>
               <p className="hero-lead">
-                Sök, låna och hantera böcker enkelt och smidigt — allt på ett ställe.
-                Välkommen till ett modernt bibliotek utan kölappar.
+                Search, borrow and manage books with ease — all in one place. Welcome to a modern library without the queues.
               </p>
 
               <div className="hero-actions">
                 {user ? (
                   <>
                     <Link to="/books" className="btn btn-hero-primary">
-                      <i className="bi bi-search me-2"></i>Sök böcker
+                      <i className="bi bi-search me-2"></i>Browse books
                     </Link>
                     <Link to="/loans" className="btn btn-hero-secondary">
-                      <i className="bi bi-bookmark-check me-2"></i>Mina lån
+                      <i className="bi bi-bookmark-check me-2"></i>My loans
                     </Link>
                   </>
                 ) : (
-                  <>
-                    <Link to="/login" className="btn btn-hero-primary">
-                      <i className="bi bi-lock me-2"></i>Logga in
-                    </Link>
                     <Link to="/register" className="btn btn-hero-secondary">
-                      <i className="bi bi-person-plus me-2"></i>Skapa konto
+                      <i className="bi bi-person-plus me-2"></i>Create account
                     </Link>
-                  </>
                 )}
               </div>
             </div>
@@ -65,31 +59,31 @@ export default function HomePage() {
       <section className="features-section">
         <div className="container">
           <div className="section-header text-center mb-5">
-            <p className="section-eyebrow">Vad kan du göra?</p>
-            <h2 className="section-title">Allt du behöver</h2>
+            <p className="section-eyebrow">What can you do?</p>
+            <h2 className="section-title">Everything you need</h2>
           </div>
 
           <div className="row g-4">
             <FeatureCard
               icon="bi-search"
-              title="Sök böcker"
-              description="Bläddra bland bibliotekets samling eller sök via Open Library för att hitta exakt det du letar efter."
+              title="Search books"
+              description="Browse the library's collection and find your next great read."
             />
             <FeatureCard
               icon="bi-bookmark-plus"
-              title="Låna enkelt"
-              description="Låna böcker direkt i systemet — utan pappersarbete. Se dina aktiva lån och återlämna när du är klar."
+              title="Borrow with ease"
+              description="Borrow books directly in the system — no paperwork. View your active loans and return them when you're done."
             />
             <FeatureCard
               icon="bi-person-check"
-              title="Ditt konto"
-              description="Hantera dina personuppgifter, håll koll på lånehistorik och se vilka böcker som väntar på dig."
+              title="Your account"
+              description="Sign up for free and get instant access to the library's full collection."
             />
             {user?.role === 'ADMIN' && (
               <FeatureCard
                 icon="bi-shield-check"
-                title="Adminpanel"
-                description="Lägg till böcker, hantera användare och övervaka alla lån i realtid — full kontroll i ett gränssnitt."
+                title="Admin panel"
+                description="Add books, manage users and monitor all loans in real time — full control in one interface."
                 highlight
               />
             )}
@@ -104,14 +98,14 @@ export default function HomePage() {
             <div className="cta-card">
               <div className="row align-items-center">
                 <div className="col-md-8">
-                  <h3 className="cta-title">Redo att börja läsa?</h3>
+                  <h3 className="cta-title">Ready to start reading?</h3>
                   <p className="cta-text">
-                    Skapa ett gratis konto och få tillgång till hela bibliotekets samling direkt.
+                    Create a free account and get access to the library's full collection right away.
                   </p>
                 </div>
                 <div className="col-md-4 text-md-end mt-3 mt-md-0">
                   <Link to="/register" className="btn btn-cta">
-                    Kom igång <i className="bi bi-arrow-right ms-1"></i>
+                    Get started <i className="bi bi-arrow-right ms-1"></i>
                   </Link>
                 </div>
               </div>
@@ -124,9 +118,9 @@ export default function HomePage() {
       <footer className="lib-footer">
         <div className="container text-center">
           <p className="footer-brand">
-            <i className="bi bi-book-half me-2"></i>Biblioteket
+            <i className="bi bi-book-half me-2"></i>The Library
           </p>
-          <p className="footer-copy">© {new Date().getFullYear()} · Byggd med Spring Boot & React</p>
+          <p className="footer-copy">© {new Date().getFullYear()} The Library · Built by Ardian Rama</p>
         </div>
       </footer>
     </div>

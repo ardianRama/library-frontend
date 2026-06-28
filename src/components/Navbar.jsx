@@ -17,7 +17,7 @@ export default function Navbar() {
         {/* Brand */}
         <Link to="/" className="navbar-brand lib-brand">
           <i className="bi bi-book-half lib-brand-icon"></i>
-          <span className="lib-brand-text">Biblioteket</span>
+          <span className="lib-brand-text">The Library</span>
         </Link>
 
         {/* Mobile toggle */}
@@ -40,7 +40,7 @@ export default function Navbar() {
               <>
                 <li className="nav-item">
                   <Link to="/books" className="nav-link lib-nav-link">
-                    <i className="bi bi-search me-1"></i>Sök böcker
+                    <i className="bi bi-search me-1"></i>Browse books
                   </Link>
                 </li>
                 {user.role === 'ADMIN' && (
@@ -52,7 +52,7 @@ export default function Navbar() {
                 )}
                 <li className="nav-item">
                   <Link to="/loans" className="nav-link lib-nav-link">
-                    <i className="bi bi-bookmark-check me-1"></i>Mina lån
+                    <i className="bi bi-bookmark-check me-1"></i>My loans
                   </Link>
                 </li>
               </>
@@ -71,16 +71,16 @@ export default function Navbar() {
                   )}
                 </span>
                 <button onClick={handleLogout} className="btn lib-btn-outline-light">
-                  <i className="bi bi-box-arrow-right me-1"></i>Logga ut
+                  <i className="bi bi-box-arrow-right me-1"></i>Log out
                 </button>
               </>
             ) : (
               <>
                 <Link to="/register" className="btn lib-btn-ghost">
-                  Registrera
+                  Log in
                 </Link>
                 <Link to="/login" className="btn lib-btn-gold">
-                  <i className="bi bi-lock me-1"></i>Logga in
+                  <i className="bi bi-lock me-1"></i>Create account
                 </Link>
               </>
             )}
