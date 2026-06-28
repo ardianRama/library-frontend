@@ -1,0 +1,135 @@
+.lib-navbar {
+  background-color: var(--color-navy);
+  padding: 0.85rem 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Brand */
+.lib-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.lib-brand-icon {
+  font-size: 1.5rem;
+  color: var(--color-gold);
+}
+
+.lib-brand-text {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--color-white);
+  letter-spacing: 0.01em;
+}
+
+/* Nav links */
+.lib-nav-link {
+  color: rgba(255,255,255,0.75) !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.45rem 0.85rem !important;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.lib-nav-link:hover {
+  color: var(--color-white) !important;
+  background: rgba(255,255,255,0.08);
+}
+
+/* User badge */
+.lib-user-badge {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255,255,255,0.08);
+  border-radius: 20px;
+}
+
+.lib-admin-tag {
+  background: var(--color-gold);
+  color: var(--color-navy);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+}
+
+/* Buttons */
+.lib-btn-gold {
+  background: var(--color-gold);
+  color: var(--color-navy) !important;
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+}
+
+.lib-btn-gold:hover {
+  background: var(--color-gold-light);
+  color: var(--color-navy) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201,168,76,0.3);
+}
+
+.lib-btn-ghost {
+  color: rgba(255,255,255,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+}
+
+.lib-btn-ghost:hover {
+  color: var(--color-white) !important;
+  border-color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.06);
+}
+
+.lib-btn-outline-light {
+  color: rgba(255,255,255,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.875rem;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+}
+
+.lib-btn-outline-light:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--color-white) !important;
+}
+
+/* Mobile toggler */
+.lib-toggler {
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--color-white);
+  background: transparent;
+  font-size: 1.2rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+.lib-toggler:focus {
+  box-shadow: 0 0 0 2px var(--color-gold);
+}
+
+@media (max-width: 991px) {
+  .lib-nav-actions {
+    padding: 0.75rem 0;
+    flex-wrap: wrap;
+  }
+}

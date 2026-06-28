@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --color-navy:       #0f1f3d;
+  --color-navy-mid:   #1a3260;
+  --color-gold:       #c9a84c;
+  --color-gold-light: #e8c97a;
+  --color-cream:      #f8f5ef;
+  --color-white:      #ffffff;
+  --color-gray-100:   #f1f1f1;
+  --color-gray-300:   #c8c8c8;
+  --color-gray-600:   #6b6b6b;
+  --color-text:       #1a1a2e;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --shadow-sm: 0 1px 3px rgba(15,31,61,0.10);
+  --shadow-md: 0 4px 16px rgba(15,31,61,0.12);
+  --shadow-lg: 0 8px 32px rgba(15,31,61,0.16);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-cream);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+}
+
+/* Smooth focus outlines */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+/* Transition defaults */
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-navy-mid); border-radius: 3px; }
