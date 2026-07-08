@@ -40,6 +40,11 @@ export default function Navbar() {
                     <i className="bi bi-search me-1"></i>Browse books
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link to="/loans" className="nav-link lib-nav-link">
+                    <i className="bi bi-bookmark-check me-1"></i>My loans
+                  </Link>
+                </li>
                 {user.role === 'ROLE_ADMIN' && (
                   <li className="nav-item">
                     <Link to="/admin" className="nav-link lib-nav-link">
@@ -47,11 +52,6 @@ export default function Navbar() {
                     </Link>
                   </li>
                 )}
-                <li className="nav-item">
-                  <Link to="/loans" className="nav-link lib-nav-link">
-                    <i className="bi bi-bookmark-check me-1"></i>My loans
-                  </Link>
-                </li>
               </>
             )}
           </ul>
