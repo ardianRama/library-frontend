@@ -19,21 +19,11 @@ export default function HomePage() {
               <p className="hero-lead">
                 Search, borrow and manage books with ease — all in one place. Welcome to a modern library without the queues.
               </p>
-
               <div className="hero-actions">
-                {user ? (
-                  <>
-                    <Link to="/books" className="btn btn-hero-primary">
-                      <i className="bi bi-search me-2"></i>Browse books
-                    </Link>
-                    <Link to="/loans" className="btn btn-hero-secondary">
-                      <i className="bi bi-bookmark-check me-2"></i>My loans
-                    </Link>
-                  </>
-                ) : (
-                    <Link to="/register" className="btn btn-hero-secondary">
-                      <i className="bi bi-person-plus me-2"></i>Create account
-                    </Link>
+                {!user && (
+                  <Link to="/register" className="btn btn-hero-secondary">
+                    <i className="bi bi-person-plus me-2"></i>Create account
+                  </Link>
                 )}
               </div>
             </div>
