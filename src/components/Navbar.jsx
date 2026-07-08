@@ -40,7 +40,7 @@ export default function Navbar() {
                     <i className="bi bi-search me-1"></i>Browse books
                   </Link>
                 </li>
-                {user.role === 'ADMIN' && (
+                {user.role === 'ROLE_ADMIN' && (
                   <li className="nav-item">
                     <Link to="/admin" className="nav-link lib-nav-link">
                       <i className="bi bi-shield-check me-1"></i>Admin
@@ -61,8 +61,8 @@ export default function Navbar() {
               <>
                 <span className="lib-user-badge">
                   <i className="bi bi-person-circle me-1"></i>
-                  {user.username}
-                  {user.role === 'ADMIN' && (
+                  {user.sub}
+                  {user.role === 'ROLE_ADMIN' && (
                     <span className="lib-admin-tag ms-1">Admin</span>
                   )}
                 </span>
