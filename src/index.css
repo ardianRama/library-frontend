@@ -36,18 +36,15 @@ h1, h2, h3, h4, h5 {
   font-family: var(--font-display);
 }
 
-/* Smooth focus outlines */
 :focus-visible {
   outline: 2px solid var(--color-gold);
   outline-offset: 3px;
 }
 
-/* Transition defaults */
 a, button {
   transition: all 0.2s ease;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--color-cream); }
 ::-webkit-scrollbar-thumb { background: var(--color-navy-mid); border-radius: 3px; }

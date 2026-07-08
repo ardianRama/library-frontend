@@ -1,4 +1,3 @@
-/* ── Hero ── */
 .hero-section {
   position: relative;
   background: linear-gradient(135deg, var(--color-navy) 0%, var(--color-navy-mid) 100%);
@@ -92,7 +91,6 @@
   background: rgba(255,255,255,0.07);
 }
 
-/* ── Book Illustration ── */
 .hero-illustration {
   position: relative;
   width: 280px;
@@ -170,7 +168,6 @@
   50% { transform: rotate(5deg) translateY(-10px); }
 }
 
-/* ── Features ── */
 .features-section {
   padding: 5rem 0;
   background: var(--color-cream);
@@ -249,7 +246,6 @@
   margin: 0;
 }
 
-/* ── CTA ── */
 .cta-section {
   padding: 3rem 0 4rem;
   background: var(--color-cream);
@@ -292,7 +288,6 @@
   box-shadow: 0 6px 20px rgba(201,168,76,0.3);
 }
 
-/* ── Footer ── */
 .lib-footer {
   background: var(--color-navy);
   padding: 2rem 0;
@@ -311,7 +306,6 @@
   margin: 0;
 }
 
-/* ── Responsive ── */
 @media (max-width: 768px) {
   .hero-section { padding: 4rem 0 3.5rem; }
   .cta-card { padding: 2rem 1.5rem; }

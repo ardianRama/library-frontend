@@ -7,7 +7,6 @@ export default function HomePage() {
 
   return (
     <div className="homepage">
-      {/* ── Hero ── */}
       <section className="hero-section">
         <div className="hero-bg-pattern" aria-hidden="true" />
         <div className="container">
@@ -54,7 +53,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Features ── */}
       <section className="features-section">
         <div className="container">
           <div className="section-header text-center mb-5">
@@ -90,7 +88,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── CTA (only for guests) ── */}
       {!user && (
         <section className="cta-section">
           <div className="container">
@@ -113,7 +110,6 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* ── Footer ── */}
       <footer className="lib-footer">
         <div className="container text-center">
           <p className="footer-brand">

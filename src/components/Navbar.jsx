@@ -14,13 +14,11 @@ export default function Navbar() {
   return (
     <nav className="lib-navbar navbar navbar-expand-lg">
       <div className="container">
-        {/* Brand */}
         <Link to="/" className="navbar-brand lib-brand">
           <i className="bi bi-book-half lib-brand-icon"></i>
           <span className="lib-brand-text">The Library</span>
         </Link>
 
-        {/* Mobile toggle */}
         <button
           className="navbar-toggler lib-toggler"
           type="button"
@@ -33,7 +31,6 @@ export default function Navbar() {
           <i className="bi bi-list"></i>
         </button>
 
-        {/* Nav links */}
         <div className="collapse navbar-collapse" id="navbarContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {user && (
@@ -59,7 +56,6 @@ export default function Navbar() {
             )}
           </ul>
 
-          {/* Auth buttons */}
           <div className="lib-nav-actions d-flex align-items-center gap-2">
             {user ? (
               <>
