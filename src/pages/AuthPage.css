@@ -110,3 +110,10 @@
 .auth-link:hover {
   color: var(--color-gold);
 }
+
+.auth-hint {
+  display: block;
+  font-size: 0.775rem;
+  color: var(--color-gray-600);
+  margin-top: 0.35rem;
+}

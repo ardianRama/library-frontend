@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
-import { loginUser } from '../services/authService'
+import { loginUser, registerUser } from '../services/authService'
 import './AuthPage.css'
 
 export function LoginPage() {
@@ -89,6 +89,36 @@ export function LoginPage() {
 }
 
 export function RegisterPage() {
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  })
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError('')
+    setLoading(true)
+
+    try {
+      await registerUser(formData.email, formData.password, formData.firstName, formData.lastName)
+      navigate('/login')
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="auth-page">
       <div className="container">
@@ -99,9 +129,82 @@ export function RegisterPage() {
             <p className="auth-subtitle">Get started in seconds</p>
           </div>
           <div className="auth-body">
-            <p className="text-muted text-center">
-              <i className="bi bi-tools me-1"></i>
-              Registration form coming in the next step.
+            {error && (
+              <div className="alert auth-alert" role="alert">
+                <i className="bi bi-exclamation-circle me-2"></i>{error}
+              </div>
+            )}
+            <form onSubmit={handleSubmit}>
+              <div className="row g-3 mb-3">
+                <div className="col-6">
+                  <label className="auth-label">First name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    className="form-control auth-input"
+                    placeholder="John"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    minLength={2}
+                    maxLength={20}
+                    required
+                  />
+                </div>
+                <div className="col-6">
+                  <label className="auth-label">Last name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    className="form-control auth-input"
+                    placeholder="Doe"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    minLength={2}
+                    maxLength={20}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="mb-3">
+                <label className="auth-label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control auth-input"
+                  placeholder="your@email.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-4">
+                <label className="auth-label">Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control auth-input"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleChange}
+                  minLength={5}
+                  maxLength={20}
+                  required
+                />
+                <small className="auth-hint">Between 5 and 20 characters</small>
+              </div>
+              <button
+                type="submit"
+                className="btn auth-btn-primary w-100"
+                disabled={loading}
+              >
+                {loading
+                  ? <><i className="bi bi-hourglass-split me-2"></i>Creating account...</>
+                  : <><i className="bi bi-person-plus me-2"></i>Create account</>
+                }
+              </button>
+            </form>
+            <p className="auth-footer-text">
+              Already have an account? <Link to="/login" className="auth-link">Log in</Link>
             </p>
           </div>
         </div>

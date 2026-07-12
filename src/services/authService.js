@@ -13,3 +13,15 @@ export async function loginUser(email, password) {
 
   return response.json()
 }
+
+export async function registerUser(email, password, firstName, lastName) {
+  const response = await fetch(`${API_URL}/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, firstName, lastName })
+  })
+
+  if (!response.ok) {
+    throw new Error('Registration failed. Please try again.')
+  }
+}
