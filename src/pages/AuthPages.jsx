@@ -104,11 +104,58 @@ export function RegisterPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
+  const validateField = (name, value) => {
+    switch (name) {
+      case 'firstName':
+        if (value.length < 2 || value.length > 20)
+          setError('First name must be between 2 and 20 characters')
+        else setError('')
+        break
+      case 'lastName':
+        if (value.length < 2 || value.length > 20)
+          setError('Last name must be between 2 and 20 characters')
+        else setError('')
+        break
+      case 'email':
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+          setError('Please enter a valid email address')
+        else setError('')
+        break
+      case 'password':
+        if (value.length < 5 || value.length > 20)
+          setError('Password must be between 5 and 20 characters')
+        else setError('')
+        break
+    }
+  }
+
+  const validate = () => {
+    if (formData.firstName.length < 2 || formData.firstName.length > 20) {
+      setError('First name must be between 2 and 20 characters')
+      return false
+    }
+    if (formData.lastName.length < 2 || formData.lastName.length > 20) {
+      setError('Last name must be between 2 and 20 characters')
+      return false
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError('Please enter a valid email address')
+      return false
+    }
+    if (formData.password.length < 5 || formData.password.length > 20) {
+      setError('Password must be between 5 and 20 characters')
+      return false
+    }
+    return true
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
-    setLoading(true)
 
+    if (!validate()) return
+
+    setLoading(true)
     try {
       await registerUser(formData.email, formData.password, formData.firstName, formData.lastName)
       navigate('/login')
@@ -134,7 +181,7 @@ export function RegisterPage() {
                 <i className="bi bi-exclamation-circle me-2"></i>{error}
               </div>
             )}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} noValidate>
               <div className="row g-3 mb-3">
                 <div className="col-6">
                   <label className="auth-label">First name</label>
@@ -145,8 +192,7 @@ export function RegisterPage() {
                     placeholder="John"
                     value={formData.firstName}
                     onChange={handleChange}
-                    minLength={2}
-                    maxLength={20}
+                    onBlur={(e) => validateField(e.target.name, e.target.value)}
                     required
                   />
                 </div>
@@ -159,8 +205,7 @@ export function RegisterPage() {
                     placeholder="Doe"
                     value={formData.lastName}
                     onChange={handleChange}
-                    minLength={2}
-                    maxLength={20}
+                    onBlur={(e) => validateField(e.target.name, e.target.value)}
                     required
                   />
                 </div>
@@ -174,6 +219,7 @@ export function RegisterPage() {
                   placeholder="your@email.com"
                   value={formData.email}
                   onChange={handleChange}
+                  onBlur={(e) => validateField(e.target.name, e.target.value)}
                   required
                 />
               </div>
@@ -186,8 +232,7 @@ export function RegisterPage() {
                   placeholder="••••••••"
                   value={formData.password}
                   onChange={handleChange}
-                  minLength={5}
-                  maxLength={20}
+                  onBlur={(e) => validateField(e.target.name, e.target.value)}
                   required
                 />
                 <small className="auth-hint">Between 5 and 20 characters</small>
