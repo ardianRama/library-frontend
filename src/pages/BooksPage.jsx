@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getAllBooks, searchBooks } from '../services/bookService'
+import { borrowBook } from '../services/loanService'
+import Toast from '../components/Toast'
 import './BooksPage.css'
 
 const BOOKS_PER_PAGE = 20
@@ -10,6 +12,7 @@ export default function BooksPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const [toast, setToast] = useState(null)
 
   useEffect(() => {
     fetchBooks()
@@ -56,6 +59,16 @@ export default function BooksPage() {
       setError(err.message)
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleBorrow = async (book) => {
+    try {
+      const loan = await borrowBook(book.id)
+      setToast({ message: `You have successfully borrowed "${loan.bookTitle}"`, type: 'success' })
+      fetchBooks()
+    } catch (err) {
+      setToast({ message: 'Failed to borrow book. Please try again.', type: 'error' })
     }
   }
 
@@ -128,7 +141,7 @@ export default function BooksPage() {
           <>
             <div className="books-grid">
               {paginatedBooks.map(book => (
-                <BookCard key={book.id} book={book} />
+                <BookCard key={book.id} book={book} onBorrow={handleBorrow} />
               ))}
             </div>
 
@@ -163,12 +176,20 @@ export default function BooksPage() {
             )}
           </>
         )}
+
+        {toast && (
+          <Toast
+            message={toast.message}
+            type={toast.type}
+            onClose={() => setToast(null)}
+          />
+        )}
       </div>
     </div>
   )
 }
 
-function BookCard({ book }) {
+function BookCard({ book, onBorrow }) {
   const available = book.availableCopies > 0
 
   return (
@@ -191,6 +212,13 @@ function BookCard({ book }) {
         {book.firstPublishYear && (
           <p className="book-card-year">{book.firstPublishYear}</p>
         )}
+        <button
+          className="btn book-card-borrow-btn"
+          disabled={!available}
+          onClick={() => onBorrow(book)}
+        >
+          {available ? 'Borrow' : 'Unavailable'}
+        </button>
       </div>
     </div>
   )
