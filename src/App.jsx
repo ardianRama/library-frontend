@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import HomePage from './pages/HomePage'
 import { LoginPage, RegisterPage } from './pages/AuthPages'
 import BooksPage from './pages/BooksPage'
+import Footer from './components/Footer'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/books" element={<BooksPage />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   )
