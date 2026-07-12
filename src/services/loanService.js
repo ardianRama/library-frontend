@@ -13,7 +13,8 @@ export async function borrowBook(bookId) {
   })
 
   if (!response.ok) {
-    throw new Error('Failed to borrow book')
+    const data = await response.json()
+    throw new Error(data.message || 'Failed to borrow book. Please try again.')
   }
 
   return response.json()

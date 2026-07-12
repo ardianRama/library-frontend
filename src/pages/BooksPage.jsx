@@ -68,7 +68,7 @@ export default function BooksPage() {
       setToast({ message: `You have successfully borrowed "${loan.bookTitle}"`, type: 'success' })
       fetchBooks()
     } catch (err) {
-      setToast({ message: 'Failed to borrow book. Please try again.', type: 'error' })
+      setToast({ message: err.message, type: 'error' })
     }
   }
 
