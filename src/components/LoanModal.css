@@ -1,0 +1,134 @@
+.loan-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,31,61,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  animation: fade-in 0.2s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.loan-modal-card {
+  background: var(--color-white);
+  border-radius: 14px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: var(--shadow-lg);
+  animation: slide-up 0.2s ease;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(1rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.loan-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem;
+  border-bottom: 1px solid rgba(15,31,61,0.08);
+}
+
+.loan-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin: 0;
+}
+
+.loan-modal-close {
+  background: none;
+  border: none;
+  color: var(--color-gray-600);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.loan-modal-close:hover {
+  color: var(--color-navy);
+}
+
+.loan-modal-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.loan-modal-book-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(15,31,61,0.08);
+}
+
+.loan-modal-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(15,31,61,0.05);
+}
+
+.loan-modal-detail:last-child {
+  border-bottom: none;
+}
+
+.loan-modal-detail-label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: var(--color-gray-600);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.loan-modal-detail-value {
+  font-size: 0.875rem;
+  color: var(--color-navy);
+}
+
+.loan-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(15,31,61,0.08);
+}
+
+.loan-modal-btn-secondary {
+  color: var(--color-navy) !important;
+  border: 1.5px solid var(--color-gray-300) !important;
+  background: transparent;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+}
+
+.loan-modal-btn-secondary:hover {
+  border-color: var(--color-navy) !important;
+}
+
+.loan-modal-btn-primary {
+  background-color: var(--color-navy) !important;
+  color: var(--color-white) !important;
+  border: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+}
+
+.loan-modal-btn-primary:hover {
+  background-color: var(--color-navy-mid) !important;
+}
