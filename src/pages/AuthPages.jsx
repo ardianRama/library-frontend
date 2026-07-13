@@ -1,3 +1,6 @@
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
@@ -8,8 +11,6 @@ export function LoginPage() {
   const { login } = useAuth()
   const navigate = useNavigate()
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
@@ -19,7 +20,10 @@ export function LoginPage() {
     setLoading(true)
 
     try {
-      const data = await loginUser(email, password)
+      const data = await loginUser(
+        e.target.email.value,
+        e.target.password.value
+      )
       login(data.token)
       navigate('/')
     } catch (err) {
@@ -49,10 +53,9 @@ export function LoginPage() {
                 <label className="auth-label">Email</label>
                 <input
                   type="email"
+                  name="email"
                   className="form-control auth-input"
                   placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
                   required
                 />
               </div>
@@ -60,10 +63,9 @@ export function LoginPage() {
                 <label className="auth-label">Password</label>
                 <input
                   type="password"
+                  name="password"
                   className="form-control auth-input"
                   placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </div>
@@ -88,79 +90,35 @@ export function LoginPage() {
   )
 }
 
+const registerSchema = z.object({
+  firstName: z.string().min(2, 'First name must be at least 2 characters').max(20, 'First name must be at most 20 characters'),
+  lastName: z.string().min(2, 'Last name must be at least 2 characters').max(20, 'Last name must be at most 20 characters'),
+  email: z.string().email('Please enter a valid email address'),
+  password: z.string().min(5, 'Password must be at least 5 characters').max(20, 'Password must be at most 20 characters')
+})
+
 export function RegisterPage() {
   const navigate = useNavigate()
-
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: ''
-  })
-  const [error, setError] = useState('')
+  const [serverError, setServerError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: zodResolver(registerSchema),
+    mode: 'onBlur'
+  })
 
-  const validateField = (name, value) => {
-    switch (name) {
-      case 'firstName':
-        if (value.length < 2 || value.length > 20)
-          setError('First name must be between 2 and 20 characters')
-        else setError('')
-        break
-      case 'lastName':
-        if (value.length < 2 || value.length > 20)
-          setError('Last name must be between 2 and 20 characters')
-        else setError('')
-        break
-      case 'email':
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
-          setError('Please enter a valid email address')
-        else setError('')
-        break
-      case 'password':
-        if (value.length < 5 || value.length > 20)
-          setError('Password must be between 5 and 20 characters')
-        else setError('')
-        break
-    }
-  }
-
-  const validate = () => {
-    if (formData.firstName.length < 2 || formData.firstName.length > 20) {
-      setError('First name must be between 2 and 20 characters')
-      return false
-    }
-    if (formData.lastName.length < 2 || formData.lastName.length > 20) {
-      setError('Last name must be between 2 and 20 characters')
-      return false
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      setError('Please enter a valid email address')
-      return false
-    }
-    if (formData.password.length < 5 || formData.password.length > 20) {
-      setError('Password must be between 5 and 20 characters')
-      return false
-    }
-    return true
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setError('')
-
-    if (!validate()) return
-
+  const onSubmit = async (data) => {
+    setServerError('')
     setLoading(true)
     try {
-      await registerUser(formData.email, formData.password, formData.firstName, formData.lastName)
+      await registerUser(data.email, data.password, data.firstName, data.lastName)
       navigate('/login')
     } catch (err) {
-      setError(err.message)
+      setServerError(err.message)
     } finally {
       setLoading(false)
     }
@@ -176,66 +134,62 @@ export function RegisterPage() {
             <p className="auth-subtitle">Get started in seconds</p>
           </div>
           <div className="auth-body">
-            {error && (
+            {serverError && (
               <div className="alert auth-alert" role="alert">
-                <i className="bi bi-exclamation-circle me-2"></i>{error}
+                <i className="bi bi-exclamation-circle me-2"></i>{serverError}
               </div>
             )}
-            <form onSubmit={handleSubmit} noValidate>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="row g-3 mb-3">
                 <div className="col-6">
                   <label className="auth-label">First name</label>
                   <input
                     type="text"
-                    name="firstName"
-                    className="form-control auth-input"
+                    className={`form-control auth-input ${errors.firstName ? 'auth-input--error' : ''}`}
                     placeholder="John"
-                    value={formData.firstName}
-                    onChange={handleChange}
-                    onBlur={(e) => validateField(e.target.name, e.target.value)}
-                    required
+                    {...register('firstName')}
                   />
+                  {errors.firstName && (
+                    <small className="auth-error">{errors.firstName.message}</small>
+                  )}
                 </div>
                 <div className="col-6">
                   <label className="auth-label">Last name</label>
                   <input
                     type="text"
-                    name="lastName"
-                    className="form-control auth-input"
+                    className={`form-control auth-input ${errors.lastName ? 'auth-input--error' : ''}`}
                     placeholder="Doe"
-                    value={formData.lastName}
-                    onChange={handleChange}
-                    onBlur={(e) => validateField(e.target.name, e.target.value)}
-                    required
+                    {...register('lastName')}
                   />
+                  {errors.lastName && (
+                    <small className="auth-error">{errors.lastName.message}</small>
+                  )}
                 </div>
               </div>
               <div className="mb-3">
                 <label className="auth-label">Email</label>
                 <input
                   type="email"
-                  name="email"
-                  className="form-control auth-input"
+                  className={`form-control auth-input ${errors.email ? 'auth-input--error' : ''}`}
                   placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={(e) => validateField(e.target.name, e.target.value)}
-                  required
+                  {...register('email')}
                 />
+                {errors.email && (
+                  <small className="auth-error">{errors.email.message}</small>
+                )}
               </div>
               <div className="mb-4">
                 <label className="auth-label">Password</label>
                 <input
                   type="password"
-                  name="password"
-                  className="form-control auth-input"
+                  className={`form-control auth-input ${errors.password ? 'auth-input--error' : ''}`}
                   placeholder="••••••••"
-                  value={formData.password}
-                  onChange={handleChange}
-                  onBlur={(e) => validateField(e.target.name, e.target.value)}
-                  required
+                  {...register('password')}
                 />
-                <small className="auth-hint">Between 5 and 20 characters</small>
+                {errors.password
+                  ? <small className="auth-error">{errors.password.message}</small>
+                  : <small className="auth-hint">Between 5 and 20 characters</small>
+                }
               </div>
               <button
                 type="submit"
