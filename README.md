@@ -106,7 +106,7 @@ The app will be available at `http://localhost:3000`.
 
 The app uses JWT-based authentication. The token is stored in `localStorage` and sent as a `Bearer` token in the `Authorization` header on every API request.
 
-Protected routes redirect unauthenticated users to `/login`. The `/admin` route is restricted to users with the `ROLE_ADMIN` role.
+Protected routes redirect unauthenticated users to `/login`. The `/admin` route is restricted to users with the `ADMIN` role.
 
 ---
 
