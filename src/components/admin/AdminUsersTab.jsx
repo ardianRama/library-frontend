@@ -10,6 +10,7 @@ export default function AdminUsersTab() {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [search, setSearch] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [showAddModal, setShowAddModal] = useState(false)
   const [toast, setToast] = useState(null)
@@ -48,8 +49,13 @@ export default function AdminUsersTab() {
     if (type === 'success') fetchUsers()
   }
 
-  const totalPages = Math.ceil(users.length / USERS_PER_PAGE)
-  const paginatedUsers = users.slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE)
+  const filteredUsers = users.filter(user =>
+    `${user.firstName} ${user.lastName}`.toLowerCase().includes(search.toLowerCase()) ||
+    user.email.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const totalPages = Math.ceil(filteredUsers.length / USERS_PER_PAGE)
+  const paginatedUsers = filteredUsers.slice((currentPage - 1) * USERS_PER_PAGE, currentPage * USERS_PER_PAGE)
 
   return (
     <div className="admin-users-tab">
@@ -63,6 +69,17 @@ export default function AdminUsersTab() {
         <button className="btn admin-add-user-btn" onClick={() => setShowAddModal(true)}>
           <i className="bi bi-person-plus me-2"></i>Add user
         </button>
+      </div>
+
+      <div className="users-search-wrapper">
+        <i className="bi bi-search users-search-icon"></i>
+        <input
+          type="text"
+          className="users-search-input"
+          placeholder="Search by name or email..."
+          value={search}
+          onChange={(e) => { setSearch(e.target.value); setCurrentPage(1) }}
+        />
       </div>
 
       {error && (
@@ -79,11 +96,11 @@ export default function AdminUsersTab() {
         </div>
       )}
 
-      {!loading && users.length === 0 && (
+      {!loading && filteredUsers.length === 0 && (
         <p className="text-muted">No users found.</p>
       )}
 
-      {!loading && users.length > 0 && (
+      {!loading && filteredUsers.length > 0 && (
         <>
           <div className="users-table-wrapper">
             <table className="users-table">
