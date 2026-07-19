@@ -42,8 +42,9 @@ export default function LoansPage() {
   }
 
   const isAdmin = user?.role === 'ROLE_ADMIN'
-  const activeLoans = loans.filter(loan => !loan.returnedAt)
-  const returnedLoans = loans.filter(loan => loan.returnedAt)
+  const myLoans = isAdmin ? loans.filter(loan => loan.email === user.sub) : loans
+  const activeLoans = myLoans.filter(loan => !loan.returnedAt)
+  const returnedLoans = myLoans.filter(loan => loan.returnedAt)
 
   return (
     <div className="loans-page">
