@@ -25,6 +25,7 @@ export default function AdminBooksTab() {
   const [booksLoading, setBooksLoading] = useState(true)
   const [booksError, setBooksError] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
+  const [bookSearch, setBookSearch] = useState('')
 
   const [toast, setToast] = useState(null)
 
@@ -93,15 +94,21 @@ export default function AdminBooksTab() {
     }
   }
 
-  const totalPages = Math.ceil(books.length / BOOKS_PER_PAGE)
-  const paginatedBooks = books.slice((currentPage - 1) * BOOKS_PER_PAGE, currentPage * BOOKS_PER_PAGE)
-
   const totalExternalPages = Math.ceil(externalResults.length / EXTERNAL_PER_PAGE)
   const paginatedExternal = externalResults.slice((externalPage - 1) * EXTERNAL_PER_PAGE, externalPage * EXTERNAL_PER_PAGE)
+
+  const searchedBooks = books.filter(book =>
+    book.title.toLowerCase().includes(bookSearch.toLowerCase()) ||
+    book.author.toLowerCase().includes(bookSearch.toLowerCase())
+  )
+
+  const totalPages = Math.ceil(searchedBooks.length / BOOKS_PER_PAGE)
+  const paginatedBooks = searchedBooks.slice((currentPage - 1) * BOOKS_PER_PAGE, currentPage * BOOKS_PER_PAGE)
 
   return (
     <div className="admin-books-tab">
 
+      {/* External search */}
       <div className="admin-section">
         <h2 className="admin-section-title">
           <i className="bi bi-search me-2"></i>Search Open Library
@@ -177,11 +184,23 @@ export default function AdminBooksTab() {
 
       <hr className="admin-divider" />
 
+      {/* Library books */}
       <div className="admin-section">
         <h2 className="admin-section-title">
           <i className="bi bi-collection me-2"></i>Library books
         </h2>
         <p className="admin-section-desc">Manage books currently in the library.</p>
+
+        <div className="books-search-wrapper">
+          <i className="bi bi-search books-search-icon"></i>
+          <input
+            type="text"
+            className="books-search-input-filter"
+            placeholder="Search by title or author..."
+            value={bookSearch}
+            onChange={(e) => { setBookSearch(e.target.value); setCurrentPage(1) }}
+          />
+        </div>
 
         {booksError && (
           <div className="alert admin-alert" role="alert">
@@ -197,11 +216,11 @@ export default function AdminBooksTab() {
           </div>
         )}
 
-        {!booksLoading && books.length === 0 && (
-          <p className="text-muted">No books in the library yet.</p>
+        {!booksLoading && searchedBooks.length === 0 && (
+          <p className="text-muted">No books found.</p>
         )}
 
-        {!booksLoading && books.length > 0 && (
+        {!booksLoading && searchedBooks.length > 0 && (
           <>
             <div className="library-books-list">
               {paginatedBooks.map(book => (
