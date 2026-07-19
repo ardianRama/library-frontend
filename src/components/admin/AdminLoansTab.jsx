@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getAllLoans } from '../../../src/services/loanService'
+import { getAllLoans } from '../../services/loanService'
 import Toast from '../Toast'
 import './AdminLoansTab.css'
 
@@ -10,6 +10,7 @@ export default function AdminLoansTab() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
   const [filter, setFilter] = useState('active')
+  const [search, setSearch] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [toast, setToast] = useState(null)
 
@@ -39,17 +40,22 @@ export default function AdminLoansTab() {
     })
   }
 
-  const filteredLoans = filter === 'active'
-    ? loans.filter(loan => !loan.returnedAt)
-    : loans.filter(loan => loan.returnedAt)
-
-  const totalPages = Math.ceil(filteredLoans.length / LOANS_PER_PAGE)
-  const paginatedLoans = filteredLoans.slice((currentPage - 1) * LOANS_PER_PAGE, currentPage * LOANS_PER_PAGE)
-
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter)
     setCurrentPage(1)
   }
+
+  const filteredLoans = filter === 'active'
+    ? loans.filter(loan => !loan.returnedAt)
+    : loans.filter(loan => loan.returnedAt)
+
+  const searchedLoans = filteredLoans.filter(loan =>
+    loan.bookTitle.toLowerCase().includes(search.toLowerCase()) ||
+    loan.email.toLowerCase().includes(search.toLowerCase())
+  )
+
+  const totalPages = Math.ceil(searchedLoans.length / LOANS_PER_PAGE)
+  const paginatedLoans = searchedLoans.slice((currentPage - 1) * LOANS_PER_PAGE, currentPage * LOANS_PER_PAGE)
 
   return (
     <div className="admin-loans-tab">
@@ -76,6 +82,17 @@ export default function AdminLoansTab() {
         </div>
       </div>
 
+      <div className="loans-search-wrapper">
+        <i className="bi bi-search loans-search-icon"></i>
+        <input
+          type="text"
+          className="loans-search-input"
+          placeholder="Search by book or email..."
+          value={search}
+          onChange={(e) => { setSearch(e.target.value); setCurrentPage(1) }}
+        />
+      </div>
+
       {error && (
         <div className="alert admin-alert" role="alert">
           <i className="bi bi-exclamation-circle me-2"></i>{error}
@@ -90,11 +107,11 @@ export default function AdminLoansTab() {
         </div>
       )}
 
-      {!loading && filteredLoans.length === 0 && (
+      {!loading && searchedLoans.length === 0 && (
         <p className="text-muted">No {filter} loans found.</p>
       )}
 
-      {!loading && filteredLoans.length > 0 && (
+      {!loading && searchedLoans.length > 0 && (
         <>
           <div className="loans-table-wrapper">
             <table className="loans-table">
