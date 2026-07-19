@@ -6,6 +6,7 @@ import { LoginPage, RegisterPage } from './pages/AuthPages'
 import BooksPage from './pages/BooksPage'
 import Footer from './components/Footer'
 import LoansPage from './pages/LoansPage'
+import AdminPage from './pages/AdminPage'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/books" element={<BooksPage />} />
           <Route path="/loans" element={<LoansPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
