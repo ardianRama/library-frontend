@@ -1,0 +1,93 @@
+.admin-loans-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.loans-filter {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.loans-filter-btn {
+  background: transparent;
+  color: var(--color-gray-600) !important;
+  border: 1.5px solid var(--color-gray-300) !important;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+}
+
+.loans-filter-btn:hover {
+  border-color: var(--color-navy) !important;
+  color: var(--color-navy) !important;
+}
+
+.loans-filter-btn--active {
+  background-color: var(--color-navy) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-navy) !important;
+}
+
+.loans-table-wrapper {
+  overflow-x: auto;
+}
+
+.loans-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.loans-table thead tr {
+  border-bottom: 2px solid rgba(15,31,61,0.08);
+}
+
+.loans-table th {
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gray-600);
+  text-align: left;
+}
+
+.loans-table td {
+  padding: 0.9rem 1rem;
+  color: var(--color-navy);
+  border-bottom: 1px solid rgba(15,31,61,0.05);
+}
+
+.loans-table tbody tr:hover {
+  background: var(--color-cream);
+}
+
+.loans-table-book {
+  font-weight: 600;
+}
+
+.loans-table-email {
+  color: var(--color-gray-600) !important;
+}
+
+.loan-active-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background: #d4f0e0;
+  color: #1a7a45;
+}
+
+.admin-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+}

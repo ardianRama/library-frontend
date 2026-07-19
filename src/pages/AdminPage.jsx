@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom'
 import AdminBooksTab from '../components/admin/AdminBooksTab'
 import AdminUsersTab from '../components/admin/AdminUsersTab'
 import './AdminPage.css'
+import AdminLoansTab from '../components/admin/AdminLoansTab'
 
 export default function AdminPage() {
   const { user } = useAuth()
@@ -45,7 +46,7 @@ export default function AdminPage() {
         <div className="admin-content">
           {activeTab === 'books' && <AdminBooksTab />}
           {activeTab === 'users' && <AdminUsersTab />}
-          {activeTab === 'loans' && <p className="text-muted">Coming soon.</p>}
+          {activeTab === 'loans' && <AdminLoansTab />}
         </div>
       </div>
     </div>
