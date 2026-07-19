@@ -101,8 +101,8 @@ export default function AdminUsersTab() {
                     <td>{user.firstName} {user.lastName}</td>
                     <td>{user.email}</td>
                     <td>
-                      <span className={`user-role-badge ${user.role === 'ROLE_ADMIN' ? 'badge--admin' : 'badge--user'}`}>
-                        {user.role === 'ROLE_ADMIN' ? 'Admin' : 'User'}
+                      <span className={`user-role-badge ${user.role === 'ADMIN' ? 'badge--admin' : 'badge--user'}`}>
+                        {user.role === 'ADMIN' ? 'Admin' : 'User'}
                       </span>
                     </td>
                     <td className="text-end">
