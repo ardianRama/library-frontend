@@ -63,8 +63,8 @@ The application supports two roles:
 | Styling    | Bootstrap 5 + custom CSS    |
 | Routing    | React Router DOM            |
 | Forms      | React Hook Form + Zod       |
-| HTTP       | Fetch API                   |
-| Auth       | JWT (stored in localStorage)|
+| HTTP       | Axios                       |
+| Auth       | JWT                         |
 
 ---
 
