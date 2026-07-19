@@ -4,7 +4,7 @@ import { borrowBook } from '../services/loanService'
 import Toast from '../components/Toast'
 import './BooksPage.css'
 
-const BOOKS_PER_PAGE = 20
+const BOOKS_PER_PAGE = 14
 
 export default function BooksPage() {
   const [books, setBooks] = useState([])
