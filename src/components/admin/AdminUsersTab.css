@@ -1,0 +1,82 @@
+.admin-users-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.admin-add-user-btn {
+  background-color: var(--color-navy) !important;
+  color: var(--color-white) !important;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  white-space: nowrap;
+}
+
+.admin-add-user-btn:hover {
+  background-color: var(--color-navy-mid) !important;
+}
+
+.users-table-wrapper {
+  overflow-x: auto;
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.users-table thead tr {
+  border-bottom: 2px solid rgba(15,31,61,0.08);
+}
+
+.users-table th {
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-gray-600);
+  text-align: left;
+}
+
+.users-table td {
+  padding: 0.9rem 1rem;
+  color: var(--color-navy);
+  border-bottom: 1px solid rgba(15,31,61,0.05);
+}
+
+.users-table tbody tr:hover {
+  background: var(--color-cream);
+}
+
+.user-role-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.badge--admin {
+  background: rgba(201,168,76,0.15);
+  color: #8a6c1a;
+}
+
+.badge--user {
+  background: var(--color-gray-100);
+  color: var(--color-gray-600);
+}
+
+.admin-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+}

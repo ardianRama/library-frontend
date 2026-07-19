@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { Navigate } from 'react-router-dom'
 import AdminBooksTab from '../components/admin/AdminBooksTab'
+import AdminUsersTab from '../components/admin/AdminUsersTab'
 import './AdminPage.css'
 
 export default function AdminPage() {
@@ -43,7 +44,7 @@ export default function AdminPage() {
 
         <div className="admin-content">
           {activeTab === 'books' && <AdminBooksTab />}
-          {activeTab === 'users' && <p className="text-muted">Coming soon.</p>}
+          {activeTab === 'users' && <AdminUsersTab />}
           {activeTab === 'loans' && <p className="text-muted">Coming soon.</p>}
         </div>
       </div>
