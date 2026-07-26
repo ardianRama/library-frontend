@@ -2,6 +2,7 @@
 
 ![React](https://img.shields.io/badge/React-19-61dafb?logo=react)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952b3?logo=bootstrap)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-6.x-646cff?logo=vite)
 
 A modern, responsive frontend for the [Library Management System](https://github.com/ardianRama/library-management-system) — a digital library built with Java 21 and Spring Boot.
